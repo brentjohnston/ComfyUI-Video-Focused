@@ -138,7 +138,6 @@ Install [Cuda Toolkit 12.1 for Windows, or current ComfyUI recommended version.]
 
 `pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121` again. (cu121 mean Cuda 12.1) It will download the correct WHL.
 
-
 ### Xformers
 
 `xformers` is utilized to improve performance and memory efficiency for large models and long sequences. It is effective in some projects requiring optimized spatiotemporal attention for AI Video, such as:
@@ -159,6 +158,9 @@ These example projects benefit from `xformers` through its efficient handling of
 
 ```pip uninstall numpy```
 ```pip install numpy==1.26.4```
+
+or for ComfyUI portable version:
+```python_embeded\python.exe -m pip install xformers --no-deps```
 
 
 ### Others:
