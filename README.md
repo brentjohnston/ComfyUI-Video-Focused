@@ -82,6 +82,8 @@ Simply download, extract with [7-Zip](https://7-zip.org) and run. Make sure you 
 
 If you have trouble extracting it, right click the file -> properties -> unblock
 
+Then double click the ```run_nvidia_gpu.bat``` or ```run_cpu.bat``` to launch.
+
 #### How do I share models between another UI and ComfyUI?
 
 See the [Config file](extra_model_paths.yaml.example) to set the search paths for models. In the standalone windows build you can find this file in the ComfyUI directory. Rename this file to extra_model_paths.yaml and edit it with your favorite text editor.
@@ -118,14 +120,6 @@ This is the command to install pytorch nightly instead which might have performa
 
 ```pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu124```
 
-#### Troubleshooting
-
-If you get the "Torch not compiled with CUDA enabled" error, uninstall torch with:
-
-```pip uninstall torch```
-
-And install it again with the command above.
-
 ### Dependencies
 
 Install the dependencies by opening your terminal inside the ComfyUI folder and:
@@ -133,6 +127,39 @@ Install the dependencies by opening your terminal inside the ComfyUI folder and:
 ```pip install -r requirements.txt```
 
 After this you should have everything installed and can proceed to running ComfyUI.
+
+#### Troubleshooting
+
+If you get the "Torch not compiled with CUDA enabled" error:
+
+Install [Cuda Toolkit 12.1 for Windows, or current ComfyUI recommended version.](https://developer.nvidia.com/cuda-12-1-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local)
+
+```pip uninstall torch```
+
+`pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu121` again. (cu121 mean Cuda 12.1) It will download the correct WHL.
+
+
+### Xformers
+
+`xformers` is utilized to improve performance and memory efficiency for large models and long sequences. It is effective in some projects requiring optimized spatiotemporal attention for AI Video, such as:
+
+Examples:
+- *Tooncrafter*
+- *Comfy-SVDTools Extension*
+
+These example projects benefit from `xformers` through its efficient handling of attention mechanisms in extensive spatiotemporal data.
+
+**Note:** ComfyUI does not include `xformers` by default. You will need to install this separately.
+
+```pip uninstall torch```
+
+```pip install torch==2.3.0+cu121 torchvision==0.18.0+cu121 torchaudio==2.3.0+cu121 --extra-index-url https://download.pytorch.org/whl/cu121```
+
+```pip install xformers --no-deps```
+
+```pip uninstall numpy```
+```pip install numpy==1.26.4```
+
 
 ### Others:
 
